@@ -6,13 +6,12 @@
     <title>Valentine Pixel Quest</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Base y Reset */
         * { box-sizing: border-box; }
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             overflow: hidden; font-family: 'Press Start 2P', cursive;
             background-color: #1a0b2e;
-            touch-action: manipulation; /* Evita zoom accidental en móviles */
+            touch-action: manipulation;
         }
 
         /* Pantalla 1: Título */
@@ -23,8 +22,8 @@
             position: relative; z-index: 20; padding: 20px;
         }
 
-        h1 { font-size: clamp(1.2rem, 8vw, 3.5rem); color: #ff85a1; text-align: center; line-height: 1.4; }
-        .blink { font-size: clamp(0.6rem, 3vw, 0.9rem); color: #fff; animation: blinker 1s linear infinite; margin-top: 40px; cursor: pointer; text-align: center; }
+        h1 { font-size: clamp(1.2rem, 8vw, 3.5rem); color: #ff85a1; text-align: center; }
+        .blink { font-size: clamp(0.6rem, 3vw, 0.9rem); color: #fff; animation: blinker 1s linear infinite; margin-top: 40px; cursor: pointer; }
         @keyframes blinker { 50% { opacity: 0; } }
 
         /* Corazones */
@@ -46,22 +45,22 @@
 
         .cat-container { position: relative; width: 100%; height: 150px; z-index: 10; display: flex; justify-content: center; }
         .cat {
-            position: absolute; bottom: 0; width: clamp(100px, 30vw, 150px); 
-            image-rendering: pixelated; transition: left 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            position: absolute; bottom: 0; width: clamp(120px, 35vw, 180px); 
+            image-rendering: pixelated; transition: left 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
         }
-        .cat.running { left: 150%; }
+        .cat.running { left: 160%; }
 
         /* Ventana de Pregunta */
         #valentine-modal {
             display: none; position: relative; z-index: 30;
             background: #000; border: 4px solid #ff4d6d;
-            padding: clamp(15px, 5vw, 30px); text-align: center; color: white;
+            padding: clamp(20px, 5vw, 30px); text-align: center; color: white;
             box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
             width: 90%; max-width: 400px;
         }
 
         .question { font-size: clamp(0.7rem, 4vw, 0.9rem); margin-bottom: 25px; line-height: 1.6; }
-        .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-container { display: flex; justify-content: center; gap: 15px; }
 
         button {
             font-family: 'Press Start 2P', cursive;
@@ -90,7 +89,7 @@
         }
 
         .letter-text { font-size: clamp(0.55rem, 3.5vw, 0.75rem); line-height: 1.8; color: #333; margin-top: 15px; }
-        .pixel-cat-final { width: clamp(60px, 20vw, 90px); margin-top: 20px; image-rendering: pixelated; }
+        .pixel-cat-final { width: clamp(80px, 25vw, 110px); margin-top: 20px; image-rendering: pixelated; }
 
         .hidden { display: none !important; }
         .visible { display: flex !important; opacity: 1 !important; }
@@ -117,14 +116,14 @@
         </div>
 
         <div id="final-letter">
-            <div style="font-size: clamp(0.8rem, 5vw, 1.2rem);">❤️ GRACIAS ❤️</div>
+            <div style="font-size: clamp(0.8rem, 5vw, 1.1rem);">❤️ GRACIAS ❤️</div>
             <div class="letter-text">
                 Gracias por aceptar. <br>
                 Eres la persona más especial <br>
                 de mi mundo pixelado. <br>
                 ¡Feliz San Valentín!
             </div>
-            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Z1bmZ4Ynd6eG82Z3R4eG54eHh4eHh4eHh4eHh4eHh4eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/X8yP6m5W6qWqP/giphy.gif" class="pixel-cat-final" alt="Happy Cat">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExanIwNmM4M3F1OHE4ZzZxZGljejFzbzB2MmtycWR1MG8yZ3BreWptdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1k1ytCiReJMZWVtjXd/giphy.gif" class="pixel-cat-final" alt="Happy Cat">
         </div>
     </div>
 
@@ -155,13 +154,14 @@
             setTimeout(() => {
                 titleScreen.classList.add('hidden');
                 catScreen.classList.add('visible');
+                // El gato espera 2 seg lamiéndose/limpiándose y luego corre
                 setTimeout(() => {
                     catSprite.classList.add('running');
                     setTimeout(() => {
                         document.getElementById('catBox').classList.add('hidden');
                         modal.style.display = 'block';
-                    }, 1500);
-                }, 1500);
+                    }, 1800);
+                }, 2000);
             }, 800);
         }
 
@@ -173,14 +173,8 @@
             }
         }
 
-        // Soporte para PC y Móvil
-        window.addEventListener('click', (e) => {
-            if(!transitioned) startTransition();
-        });
-        window.addEventListener('keydown', () => {
-            if(!transitioned) startTransition();
-        });
+        window.addEventListener('click', () => { if(!transitioned) startTransition(); });
+        window.addEventListener('keydown', () => { if(!transitioned) startTransition(); });
     </script>
 </body>
-
 </html>
