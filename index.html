@@ -140,7 +140,7 @@
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.innerText = '❤';
-            heart.style.left = Math.random() * 90 + "vw";
+            heart.style.left = Math.random() * 95 + "vw";
             heart.style.animationDuration = Math.random() * 2 + 3 + "s";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
@@ -154,14 +154,15 @@
             setTimeout(() => {
                 titleScreen.classList.add('hidden');
                 catScreen.classList.add('visible');
-                // El gato espera 2 seg lamiéndose/limpiándose y luego corre
+                
+                // Espera 2.5 segundos para que se vea el gif y luego corre
                 setTimeout(() => {
                     catSprite.classList.add('running');
                     setTimeout(() => {
                         document.getElementById('catBox').classList.add('hidden');
                         modal.style.display = 'block';
                     }, 1800);
-                }, 2000);
+                }, 2500);
             }, 800);
         }
 
